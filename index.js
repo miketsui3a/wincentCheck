@@ -9,7 +9,7 @@ const a = {
 const func = async ()=>{
   const rst = await fetch('https://acs-garena.leagueoflegends.com/v1/stats/player_history/TW/259680759?endIndex=1').then(res=>res.json())
   console.log('start checking at ',moment().tz('Asia/Hong_Kong').format())
-  if(rst.games.games[0].gameId!==a.a){
+  if(rst.games.games[0].gameId!==a.a&&Date.now()-rst.games.games[0].gameCreation-rst.games.games[0].gameCreation.gameDuration*1000<7200000){
     const game = rst.games.games[0]
     const champId = game.participants[0].championId
     const win = game.participants[0].stats.win
